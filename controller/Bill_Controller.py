@@ -1,5 +1,5 @@
-from Model.bill import Bill
-from Model.bill_da import BillDa
+from model.entity.bill import Bill
+from model.entity.bill_da import BillDa
 
 class BillController:
     bill_da = BillDa()

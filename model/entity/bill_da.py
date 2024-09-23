@@ -1,6 +1,6 @@
 import mysql.connector
 
-from bill import Bill
+from model.entity.bill import Bill
 
 class BillDa:
 

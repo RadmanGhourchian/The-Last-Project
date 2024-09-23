@@ -1,6 +1,6 @@
 import mysql.connector
 
-from library import Library
+from model.entity.library import Library
 
 class LibraryDa:
 

@@ -1,5 +1,5 @@
-from Model.library import Library
-from Model.library_da import LibraryDa
+from model.entity.library import Library
+from model.entity.library_da import LibraryDa
 
 class BookController:
     library_da = LibraryDa()

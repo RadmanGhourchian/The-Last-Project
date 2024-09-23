@@ -1,6 +1,6 @@
 import mysql.connector
 
-from person import Person
+from model.entity.person import Person
 
 class PersonDa:
 
