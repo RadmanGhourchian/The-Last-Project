@@ -1,7 +1,7 @@
 import datetime
 from EntryWithLabel_Class import *
 import tkinter.ttk as ttk
-from controller.Person_Controller import PersonController
+from controller.person_controller import PersonController
 # from Booksehlf_View import BooksehlfView
 import tkinter.messagebox as msg
 from controller.book_controller import BookController
@@ -32,10 +32,10 @@ class SignInView:
         def Do_Button():
             for i in table.get_children():
                 table.delete(i)
-            if self.In_Out.get() == int("1"):
+            if self.in_out.get() == int("1"):
                 BookController().save(self.book_name.get(), self.book_id.get(), self.person_name.get(), self.language.get(),
-                                      self.genre.get(), self.In_Out.get())
-            elif self.In_Out.get() == int("0"):
+                                      self.genre.get(), self.in_out.get())
+            elif self.in_out.get() == int("0"):
                 BookController().delete(self.Id.get())
 
             for i in BookController.find_all():
@@ -83,7 +83,7 @@ class SignInView:
             self.person_name = EntryWithLabel(self.window, "Person Name : ", 10, 85, 120, "str")
             self.language = EntryWithLabel(self.window, "Language : ", 10, 125, 120, "str")
             self.genre = EntryWithLabel(self.window, "Genre : ", 10, 165, 120, "str")
-            self.In_Out = EntryWithLabel(self.window, "In or Out : ", 10, 205, 120, "bool")
+            self.in_out = EntryWithLabel(self.window, "In or Out : ", 10, 205, 120, "bool")
             self.Id = EntryWithLabel(self.window, "Id : ", 10, 245, 120, "int")
             self.bill_id = EntryWithLabel(self.window, "Bill Id : ", 10, 285, 120, "str")
             self.bill_amount = EntryWithLabel(self.window, "Bill Amount : ", 10, 325, 120, "str")

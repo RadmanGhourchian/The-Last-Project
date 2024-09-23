@@ -1,4 +1,4 @@
-from project.tools.logging import Logger
+from model.tools.logging import Logger
 
 
 def exception_handling(function):

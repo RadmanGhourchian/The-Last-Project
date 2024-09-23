@@ -1,63 +1,62 @@
-import re
+from model.tools.validator import Validator
 
 
 class Person:
-	def __init__(self, name, family, password, email, number):
-		self.name = name
-		self.family = family
-		self.password = password
-		self.email = email
-		self.number = number
+    def __init__(self, id, name, family, password, email, number):
+        self.id = id
+        self.name = name
+        self.family = family
+        self.password = password
+        self.email = email
+        self.number = number
 
-	@property
-	def name(self):
-		return self._name
+    @property
+    def id(self):
+        return self._id
 
-	@name.setter
-	def name(self, name):
-		#todo : Add Validator
-		if re.match(r"^[a-zA-Z]{3,30}$", name):
-			self._name = name
+    @id.setter
+    def id(self, id):
+        self._id = Validator.id_validator(id, "Invalid Id")
 
-	@property
-	def family(self):
-		return self._family
+    @property
+    def name(self):
+        return self._name
 
-	@family.setter
-	def family(self, family):
-		#todo : Add Validator
-		if re.match(r"^[a-zA-Z]{3,30}$", family):
-			self._family = family
+    @name.setter
+    def name(self, name):
+        self._name = Validator.name_validator(name, "Invalid Name")
 
-	@property
-	def password(self):
-		return self._password
+    @property
+    def family(self):
+        return self._family
 
-	@password.setter
-	def password(self, password):
-		#todo : Add Validator
-		if re.match(r"^[a-zA-Z\d\s]{6,30}$", password):
-			self._password = password
+    @family.setter
+    def family(self, family):
+        self._family = Validator.family_validator(family, "Invalid Family")
 
-	@property
-	def email(self):
-		return self._email
+    @property
+    def password(self):
+        return self._password
 
-	@email.setter
-	def email(self, email):
-		#todo : Add Validator
-		if re.match(r"^[a-zA-Z][\.\_\da-zA-Z]{1,20}\@(gmail|yahoo|msn)\.com$", email, re.I):
-			self._email = email
+    @password.setter
+    def password(self, password):
+        self._password = Validator.password_validator(password, "Invalid Password")
 
-	@property
-	def number(self):
-		return self._number
+    @property
+    def email(self):
+        return self._email
 
-	@number.setter
-	def number(self, number):
-		#todo : Add Validator
-		if re.match(r"^(09|\+989)[0-9]{9}$", number):
-			self._number = number
+    @email.setter
+    def email(self, email):
+        self._email = Validator.email_validator(email, "Invalid Email")
 
-	def __repr__(self):
-		return f"{self.__dict__}"
+    @property
+    def number(self):
+        return self._number
+
+    @number.setter
+    def number(self, number):
+        self._number = Validator.phone_number_validator(number, "Invalid Phone Number")
+
+    def __repr__(self):
+        return f"{self.__dict__}"

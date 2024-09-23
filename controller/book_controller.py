@@ -1,25 +1,24 @@
 from model.entity.library import Library
 from model.da.library_da import LibraryDa
+from model.tools.decorators import exception_handling
+
 
 class BookController:
     library_da = LibraryDa()
 
     @classmethod
-    def save(cls, name, b_id, person_name, language, genre, In_Out=True):
-        try:
-            book = Library(name, b_id, person_name, language, genre, In_Out)
-            cls.library_da.save(book)
-            return True, f"Book {book} Saved!"
-        except Exception as e:
-            return False, str(e)
+    @exception_handling
+    def save(cls, name, b_id, person_name, language, genre, in_out=True):        
+        book = Library(name, b_id, person_name, language, genre, in_out)
+        cls.library_da.save(book)
+        return True, f"Book {book} Saved!"        
+
     @classmethod
-    def edit(cls, name, b_id, person_name, language, genre, In_Out=True):
-        try:
-            book = Library(name, b_id, person_name, language, genre, In_Out)
-            cls.library_da.edit(book)
-            return True, f"Book {book} Edited!"
-        except Exception as e:
-            return False, str(e)
+    def edit(cls,id, name, b_id, person_name, language, genre, in_out=True):
+        book = Library(id, name, b_id, person_name, language, genre, in_out)
+        cls.library_da.edit(book)
+        return True, f"Book {book} Edited!"        
+
     @classmethod
     def delete(cls, id):
         try:
@@ -27,6 +26,7 @@ class BookController:
             return True, f"Book {id} Deleted!"
         except Exception as e:
             return False, str(e)
+
     @classmethod
     def find_all(cls):
         try:
@@ -34,6 +34,7 @@ class BookController:
             return lister
         except Exception as e:
             return False, str(e)
+
     @classmethod
     def find_by_id(cls, id):
         try:
@@ -41,6 +42,7 @@ class BookController:
             return True, f"Book {id} Found!"
         except Exception as e:
             return False, str(e)
+
     @classmethod
     def find_by_genre(cls, genre):
         try:

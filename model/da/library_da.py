@@ -17,7 +17,7 @@ class LibraryDa:
 	def save(self, library):
 		self.connect()
 		#todo : complete sql command and parameters
-		self.cursor.execute("insert into library_tbl (name, b_id, person_name, lang, genre, In_Out) values (%s, %s, %s, %s, %s, %s)",[library.name, library.b_id, library.person_name, library.language, library.genre, library.In_Out])
+		self.cursor.execute("insert into library_tbl (name, b_id, person_name, lang, genre, in_out) values (%s, %s, %s, %s, %s, %s)",[library.name, library.b_id, library.person_name, library.language, library.genre, library.in_out])
 		self.disconnect(commit = True)
 
 	def edit(self, library):

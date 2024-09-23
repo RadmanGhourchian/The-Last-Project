@@ -1,5 +1,4 @@
 import re
-from datetime import datetime, date
 
 
 class Validator:
@@ -25,14 +24,14 @@ class Validator:
             raise ValueError(message)
 
     @classmethod
-    def family_validator(cls, family):
+    def family_validator(cls, family, message):
         if re.match(r"^[a-zA-Z]{3,30}$", family):
-            return True
+            return family
         else:
-            return False
+            raise ValueError(message)
 
     @classmethod
-    def id_validator(id, message):
+    def id_validator(cls, id, message):
         if type(id) == int and id >= 0:
             return id
         else:
@@ -56,5 +55,19 @@ class Validator:
     def amount_validator(cls, amount, message):
         if type(amount) == int and amount >= 0:
             return True
+        else:
+            raise ValueError(message)
+
+    @classmethod
+    def phone_number_validator(cls, phone_number, message):
+        if type(phone_number) == str and re.match(r"^.*$", phone_number):
+            return True
+        else:
+            raise ValueError(message)
+
+    @classmethod
+    def email_validator(cls, email, message):
+        if type(email) == str  and re.match(r"^.*$", email):
+            return email
         else:
             raise ValueError(message)
