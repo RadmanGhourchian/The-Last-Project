@@ -1,5 +1,5 @@
 from model.entity.person import Person
-from model.entity.person_da import PersonDa
+from model.da.person_da import PersonDa
 
 class PersonController:
     person_da = PersonDa()

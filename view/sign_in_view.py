@@ -4,8 +4,8 @@ import tkinter.ttk as ttk
 from controller.Person_Controller import PersonController
 # from Booksehlf_View import BooksehlfView
 import tkinter.messagebox as msg
-from controller.Controller import BookController
-from controller.Bill_Controller import BillController
+from controller.book_controller import BookController
+from controller.bill_controller import BillController
 
 
 class SignInView:
