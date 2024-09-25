@@ -1,11 +1,11 @@
 import mysql.connector
 
-from model.entity.library import Library
+from model.entity.book import Book
 
 class LibraryDa:
 
 	def connect(self):
-		self.connection = mysql.connector.connect(host="localhost", user="root", password="r@dm@ns@r@1358", database="library_bookshelf")
+		self.connection = mysql.connector.connect(host="localhost", user="root", password="r@dm@ns@r@1358", database="book")
 		self.cursor = self.connection.cursor()
 
 	def disconnect(self, commit=False):
@@ -17,13 +17,13 @@ class LibraryDa:
 	def save(self, library):
 		self.connect()
 		#todo : complete sql command and parameters
-		self.cursor.execute("insert into library_tbl (name, b_id, person_name, lang, genre, in_out) values (%s, %s, %s, %s, %s, %s)",[library.name, library.b_id, library.person_name, library.language, library.genre, library.in_out])
+		self.cursor.execute("insert into library_tbl (title, author, isbn, language, genre) values (%s, %s, %s, %s, %s)",[library.title, library.author, library.isbn, library.language, library.genre])
 		self.disconnect(commit = True)
 
 	def edit(self, library):
 		self.connect()
 		#todo : complete sql command and parameters
-		self.cursor.execute("update library_tbl set person_name = %s where id=%s",[library.person_name, library.id])
+		self.cursor.execute("update library_tbl set title = %s, author = %s, isbn = %s, language = %s, genre = %s where id=%s",[library.title, library.author, library.isbn, library.language, library.genre, library.id])
 		self.disconnect(commit = True)
 
 	def remove(self, id):
@@ -43,8 +43,7 @@ class LibraryDa:
 		self.cursor.execute("select * from library_tbl where id=%s", [id])
 		library = self.cursor.fetchone()
 		self.disconnect()
-		if library:
-			return Library(*library)
+		return library
 	def find_by_genre(self, genre):
 		self.connect()
 		self.cursor.execute("select * from library_tbl where genre=%s", [genre])

@@ -1,10 +1,11 @@
-create database mft;
+create database book;
 
-create table mft.person_tbl(
+create table book.library_tbl(
     id int primary key auto_increment,
-    name varchar(30),
-    family varchar(30),
-    password varchar(20),
-    email varchar(50),
-    number varchar(11)
+    title varchar(30),
+    author varchar(30),
+    isbn varchar(20),
+    language varchar(50),
+    genre varchar(11),
+    in_out int
 );

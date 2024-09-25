@@ -1,4 +1,4 @@
-from model.entity.library import Library
+from model.entity.book import Book
 from model.da.library_da import LibraryDa
 from model.tools.decorators import exception_handling
 
@@ -8,44 +8,36 @@ class BookController:
 
     @classmethod
     @exception_handling
-    def save(cls, name, b_id, person_name, language, genre, in_out=True):        
-        book = Library(name, b_id, person_name, language, genre, in_out)
+    def save(cls, title, author, isbn, language, genre):
+        book = Book(0, title, author, isbn, language, genre)
         cls.library_da.save(book)
         return True, f"Book {book} Saved!"        
 
     @classmethod
-    def edit(cls,id, name, b_id, person_name, language, genre, in_out=True):
-        book = Library(id, name, b_id, person_name, language, genre, in_out)
+    @exception_handling
+    def edit(cls, id, title, author, isbn, language, genre):
+        book = Book(id, title, author, isbn, language, genre)
         cls.library_da.edit(book)
         return True, f"Book {book} Edited!"        
 
     @classmethod
+    @exception_handling
     def delete(cls, id):
-        try:
-            cls.library_da.remove(id)
-            return True, f"Book {id} Deleted!"
-        except Exception as e:
-            return False, str(e)
+        cls.library_da.remove(id)
+        return True, f"Book {id} Deleted!"
 
     @classmethod
+    @exception_handling
     def find_all(cls):
-        try:
-            lister = cls.library_da.find_all()
-            return lister
-        except Exception as e:
-            return False, str(e)
+        lister = cls.library_da.find_all()
+        return lister
 
     @classmethod
+    @exception_handling
     def find_by_id(cls, id):
-        try:
-            cls.library_da.find_by_id(id)
-            return True, f"Book {id} Found!"
-        except Exception as e:
-            return False, str(e)
+        return cls.library_da.find_by_id(id)
 
     @classmethod
+    @exception_handling
     def find_by_genre(cls, genre):
-        try:
-            return cls.library_da.find_by_genre(genre)
-        except Exception as e:
-            return False, str(e)
+        return cls.library_da.find_by_genre(genre)

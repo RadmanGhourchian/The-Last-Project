@@ -29,9 +29,9 @@ class PersonController:
     @classmethod
     @exception_handling
     def find_all(cls):
-        return True, cls.person_da.find_all()
+        return cls.person_da.find_all()
 
     @classmethod
     @exception_handling
     def find_by_id(cls, id):
-        return True, cls.person_da.find_by_id(id)
+        return cls.person_da.find_by_id(id)

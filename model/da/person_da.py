@@ -6,8 +6,8 @@ from model.entity.person import Person
 class PersonDa:
 
     def connect(self):
-        self.connection = mysql.connector.connect(host="localhost", user="root", password="root123",
-                                                  database="mft")
+        self.connection = mysql.connector.connect(host="localhost", user="root", password="r@dm@ns@r@1358",
+                                                  database="person_2")
         self.cursor = self.connection.cursor()
 
     def disconnect(self, commit=False):
@@ -41,12 +41,11 @@ class PersonDa:
         self.cursor.execute("select * from person_tbl ")
         person_list = self.cursor.fetchall()
         self.disconnect()
-        return [Person(*person) for person in person_list]
+        return person_list
 
     def find_by_id(self, id):
         self.connect()
         self.cursor.execute("select * from person_tbl where id=%s", [id])
         person = self.cursor.fetchone()
         self.disconnect()
-        if person:
-            return Person(*person)
+        return person
